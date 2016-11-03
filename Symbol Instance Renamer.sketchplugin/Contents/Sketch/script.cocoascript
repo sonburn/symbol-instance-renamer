@@ -1,0 +1,27 @@
+var onRun = function(context) {
+	var doc = context.document;
+	var pages = doc.pages();
+	var updateCount = 0;
+
+	for (var i = 0; i < pages.count(); i++) {
+		renameInstanceRecursive(pages.objectAtIndex(i));
+	}
+
+	doc.showMessage(updateCount + " symbol instances were renamed.");
+
+	function renameInstanceRecursive(layer) {
+		if (layer instanceof MSSymbolInstance && layer.name() != layer.symbolMaster().name().trim()) {
+			layer.setName(layer.symbolMaster().name());
+			updateCount++;
+			return
+		}
+
+		try {
+			var children = layer.layers();
+
+			for (var i = 0; i < children.length; i++) {
+				renameInstanceRecursive(children.objectAtIndex(i));
+			}
+		} catch(e) { }
+	};
+};
