@@ -1,23 +1,39 @@
 {
 	"author" : "Jason Burns",
-	"commands" : [{
-		"script" : "script.cocoascript",
-		"name" : "Symbol Instance Renamer",
-		"shortcut": "cmd option shift r",
-		"handlers" : {
-			"run" : "onRun"
+	"commands": [
+		{
+			"name": "Rename All Instances",
+			"identifier": "renameAll",
+			"shortcut": "cmd option shift r",
+			"handlers" : {
+				"run" : "renameAll"
+			},
+			"script": "script.cocoascript"
 		},
-		"identifier" : "com.bohemiancoding.sketch.runscriptidentifier"
-	}],
-	"menu" : {
-		"items" : [
-			"com.bohemiancoding.sketch.runscriptidentifier"
-		],
-		"title" : "Symbol Instance Renamer",
-		"isRoot" : true
+		{
+			"name": "Rename Selected Instance(s)",
+			"shortcut": "cmd ctrl shift r",
+			"identifier": "renameSelected",
+			"handlers" : {
+				"run" : "renameSelected"
+			},
+			"script": "script.cocoascript"
+		}
+	],
+	"menu": {
+		"isRoot": true,
+		"items": [
+			{
+				"title": "Symbol Instance Renamer",
+				"items": [
+					"renameAll",
+					"renameSelected"
+				]
+			}
+		]
 	},
 	"identifier" : "com.example.sketch.b81444f8-c756-4323-b214-e09b1a162777",
-	"version" : "1.0",
+	"version" : "2.0",
 	"description" : "Rename all symbol instances to the name of their master.",
 	"authorEmail" : "jason.burns@synchronoss.com",
 	"name" : "Symbol Instance Renamer"
