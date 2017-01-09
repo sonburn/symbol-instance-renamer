@@ -8,7 +8,9 @@
 			"handlers" : {
 				"run" : "renameAll"
 			},
-			"script": "script.cocoascript"
+			"script": "script.cocoascript",
+			"description" : "Rename all symbol instances to the name of their master.",
+			"icon" : "icon-sr.png"
 		},
 		{
 			"name": "Rename Selected Instance(s)",
@@ -17,7 +19,9 @@
 			"handlers" : {
 				"run" : "renameSelected"
 			},
-			"script": "script.cocoascript"
+			"script": "script.cocoascript",
+			"description" : "Rename selected symbol instances to the name of their master.",
+			"icon" : "icon-sr.png"
 		}
 	],
 	"menu": {
@@ -33,7 +37,7 @@
 		]
 	},
 	"identifier" : "com.example.sketch.b81444f8-c756-4323-b214-e09b1a162777",
-	"version" : "2.0",
+	"version" : "2.1",
 	"description" : "Rename all symbol instances to the name of their master.",
 	"authorEmail" : "jason.burns@synchronoss.com",
 	"name" : "Symbol Instance Renamer"

@@ -5,3 +5,5 @@ Rename all symbol instances to match the name of their masters, all with a singl
 Rename selected symbol instances to match the name of their masters, all with a single keystroke (cmd ctrl shift r).
 
 [![Symbol Instance Renamer](https://img.youtube.com/vi/_L7E0B3y9d0/0.jpg)](https://www.youtube.com/watch?v=_L7E0B3y9d0)
+
+<a href="http://bit.ly/SketchRunnerWebsite"><img height="40" width="160" src="http://sketchrunner.com/img/badge_blue.png"></a>
