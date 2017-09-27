@@ -1,44 +1,46 @@
 {
 	"author" : "Jason Burns",
-	"commands": [
+	"commands" : [
 		{
-			"name": "Rename All Instances",
-			"identifier": "renameAll",
-			"shortcut": "cmd option shift r",
-			"handlers" : {
-				"run" : "renameAll"
-			},
-			"script": "script.cocoascript",
-			"description" : "Rename all symbol instances to the name of their master.",
-			"icon" : "icon-sr.png"
+			"name" : "Rename All Instances in Document",
+			"shortcut" : "cmd option shift d",
+			"identifier" : "renameDocument",
+			"description" : "Rename all symbol instances in document to the name of their master.",
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renameDocument"
 		},
 		{
-			"name": "Rename Selected Instance(s)",
-			"shortcut": "cmd ctrl shift r",
-			"identifier": "renameSelected",
-			"handlers" : {
-				"run" : "renameSelected"
-			},
-			"script": "script.cocoascript",
+			"name" : "Rename All Instances on Page",
+			"shortcut" : "cmd option shift p",
+			"identifier" : "renamePage",
+			"description" : "Rename all symbol instances on page to the name of their master.",
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renamePage"
+		},
+		{
+			"name" : "Rename Selected Instance(s)",
+			"shortcut" : "cmd option shift s",
+			"identifier" : "renameSelected",
 			"description" : "Rename selected symbol instances to the name of their master.",
-			"icon" : "icon-sr.png"
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renameSelected"
 		}
 	],
-	"menu": {
-		"isRoot": true,
-		"items": [
-			{
-				"title": "Symbol Instance Renamer",
-				"items": [
-					"renameAll",
-					"renameSelected"
-				]
-			}
+	"menu" : {
+		"title" : "Symbol Instance Renamer",
+		"items" : [
+			"renameDocument",
+			"renamePage",
+			"renameSelected"
 		]
 	},
-	"identifier" : "com.example.sketch.b81444f8-c756-4323-b214-e09b1a162777",
-	"version" : "2.1",
-	"description" : "Rename all symbol instances to the name of their master.",
+	"identifier" : "com.sonburn.sketchplugins.symbol-instance-renamer",
+	"version" : "2.2",
+	"description" : "Rename symbol instances to the name of their master.",
 	"authorEmail" : "jason.burns@synchronoss.com",
-	"name" : "Symbol Instance Renamer"
+	"name" : "Symbol Instance Renamer",
+	"appcast" : "https://raw.githubusercontent.com/sonburn/symbol-instance-renamer/master/appcast.xml"
 }

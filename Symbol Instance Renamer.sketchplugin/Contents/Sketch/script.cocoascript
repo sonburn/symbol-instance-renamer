@@ -1,53 +1,57 @@
-var renameAll = function(context) {
-	var doc = context.document;
-	var pages = doc.pages();
-	var updateCount = 0;
+var renameDocument = function(context) {
+	var pages = context.document.pages(),
+		loop = pages.objectEnumerator(),
+		page,
+		count = 0;
 
-	for (var i = 0; i < pages.count(); i++) {
-		renameInstanceRecursive(pages.objectAtIndex(i));
+	while (page = loop.nextObject()) {
+		count = count + renameInstancesOnPage(page);
 	}
 
-	doc.showMessage(updateCount + " symbol instances were renamed.");
+	context.document.showMessage(count + " symbol instances have been renamed in your document");
+}
 
-	function renameInstanceRecursive(selected) {
-		if (selected instanceof MSSymbolInstance && selected.name() != selected.symbolMaster().name().trim()) {
-			selected.setName(selected.symbolMaster().name());
-			updateCount++;
-			return
-		}
+var renamePage = function(context) {
+	var count = renameInstancesOnPage(context.document.currentPage());
 
-		try {
-			var children = selected.layers();
-
-			for (var i = 0; i < children.length; i++) {
-				renameInstanceRecursive(children.objectAtIndex(i));
-			}
-		} catch(e) { }
-	};
-};
+	context.document.showMessage(count + " symbol instances have been renamed on this page");
+}
 
 var renameSelected = function(context) {
-	var doc = context.document;
-	var selection = context.selection;
+	var predicate = NSPredicate.predicateWithFormat("className == %@","MSSymbolInstance"),
+		instances = context.selection.filteredArrayUsingPredicate(predicate),
+		loop = instances.objectEnumerator(),
+		instance,
+		count = 0;
 
-	if (selection.count() > 0) {
-		var updateCount = 0;
-
-		for (var i = 0; i < selection.count(); i++) {
-			var selected = selection.objectAtIndex(i);
-
-			if (selected instanceof MSSymbolInstance && selected.name() != selected.symbolMaster().name().trim()) {
-				selected.setName(selected.symbolMaster().name());
-				updateCount++;
-			}
+	if (instances.count() > 0) {
+		while (instance = loop.nextObject()) {
+			if (renameInstance(instance)) count++;
 		}
 
-		doc.showMessage(updateCount + " symbol instances were renamed.");
+		context.document.showMessage(count + " symbol instances have been renamed in your selections");
 	} else {
-		displayDialog("Please select at least one symbol instance to rename.","Symbol Instance Renamer");
+		NSApplication.sharedApplication().displayDialog_withTitle("Select at least one symbol instance to rename.","Symbol Instance Renamer");
 	}
-};
+}
 
-function displayDialog(message,title) {
-	NSApplication.sharedApplication().displayDialog_withTitle(message,title);
+function renameInstancesOnPage(page) {
+	var predicate = NSPredicate.predicateWithFormat("className == %@","MSSymbolInstance"),
+		instances = page.children().filteredArrayUsingPredicate(predicate),
+		loop = instances.objectEnumerator(),
+		instance,
+		count = 0;
+
+	while (instance = loop.nextObject()) {
+		if (renameInstance(instance)) count++;
+	}
+
+	return count;
+}
+
+function renameInstance(instance) {
+	if (instance.name() != instance.symbolMaster().name().trim()) {
+		instance.setName(instance.symbolMaster().name());
+		return true;
+	} else return false;
 }
