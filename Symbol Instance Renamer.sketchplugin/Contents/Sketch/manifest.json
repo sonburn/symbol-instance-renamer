@@ -2,19 +2,28 @@
 	"author" : "Jason Burns",
 	"commands" : [
 		{
-			"name" : "Rename All Instances in Document",
+			"name" : "Rename All Instances on All Pages",
 			"shortcut" : "cmd option shift d",
-			"identifier" : "renameDocument",
-			"description" : "Rename all symbol instances in document to the name of their master.",
+			"identifier" : "renamePages",
+			"description" : "Rename all symbol instances on all pages to the name of their master.",
 			"script" : "script.cocoascript",
 			"icon" : "icon-sr.png",
-			"handler" : "renameDocument"
+			"handler" : "renamePages"
 		},
 		{
-			"name" : "Rename All Instances on Page",
+			"name" : "Rename All Instances on All Pages (Except Symbols Page)",
+			"shortcut" : "cmd option shift x",
+			"identifier" : "renamePagesExceptSymbols",
+			"description" : "Rename all symbol instances on all pages, except the Symbols page, to the name of their master.",
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renamePagesExceptSymbols"
+		},
+		{
+			"name" : "Rename All Instances on Current Page",
 			"shortcut" : "cmd option shift p",
 			"identifier" : "renamePage",
-			"description" : "Rename all symbol instances on page to the name of their master.",
+			"description" : "Rename all symbol instances on current page to the name of their master.",
 			"script" : "script.cocoascript",
 			"icon" : "icon-sr.png",
 			"handler" : "renamePage"
@@ -32,13 +41,14 @@
 	"menu" : {
 		"title" : "Symbol Instance Renamer",
 		"items" : [
-			"renameDocument",
+			"renamePages",
+			"renamePagesExceptSymbols",
 			"renamePage",
 			"renameSelected"
 		]
 	},
 	"identifier" : "com.sonburn.sketchplugins.symbol-instance-renamer",
-	"version" : "2.2",
+	"version" : "2.3",
 	"description" : "Rename symbol instances to the name of their master.",
 	"authorEmail" : "jason.burns@synchronoss.com",
 	"name" : "Symbol Instance Renamer",

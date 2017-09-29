@@ -1,4 +1,8 @@
-var renameDocument = function(context) {
+var strPluginName = "Symbol Instance Renamer",
+	strRenameSuccess = " symbol instances have been renamed",
+	strRenameFailure = "Select at least one symbol instance to rename.";
+
+var renamePages = function(context) {
 	var pages = context.document.pages(),
 		loop = pages.objectEnumerator(),
 		page,
@@ -8,13 +12,28 @@ var renameDocument = function(context) {
 		count = count + renameInstancesOnPage(page);
 	}
 
-	context.document.showMessage(count + " symbol instances have been renamed in your document");
+	context.document.showMessage(count + strRenameSuccess);
+}
+
+var renamePagesExceptSymbols = function(context) {
+	var pages = context.document.pages(),
+		loop = pages.objectEnumerator(),
+		page,
+		count = 0;
+
+	while (page = loop.nextObject()) {
+		if (page != context.document.documentData().symbolsPage()) {
+			count = count + renameInstancesOnPage(page);
+		}
+	}
+
+	context.document.showMessage(count + strRenameSuccess);
 }
 
 var renamePage = function(context) {
 	var count = renameInstancesOnPage(context.document.currentPage());
 
-	context.document.showMessage(count + " symbol instances have been renamed on this page");
+	context.document.showMessage(count + strRenameSuccess);
 }
 
 var renameSelected = function(context) {
@@ -29,9 +48,9 @@ var renameSelected = function(context) {
 			if (renameInstance(instance)) count++;
 		}
 
-		context.document.showMessage(count + " symbol instances have been renamed in your selections");
+		context.document.showMessage(count + strRenameSuccess);
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle("Select at least one symbol instance to rename.","Symbol Instance Renamer");
+		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailure,strPluginName);
 	}
 }
 

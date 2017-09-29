@@ -18,8 +18,9 @@ Rename symbol instances to the name of their master.
 
 # Usage
 
-* cmd option shift d - Rename all symbol instances in document to the name of their master
-* cmd option shift p - Rename all symbol instances on page to the name of their master
+* cmd option shift d - Rename all symbol instances on all pages to the name of their master
+* cmd option shift x - Rename all symbol instances on all pages, except the Symbols page, to the name of their master
+* cmd option shift p - Rename all symbol instances on current page to the name of their master
 * cmd option shift s - Rename selected symbol instances to the name of their master
 
 ## Automatic
@@ -39,6 +40,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.3** - Added new function to rename all instances on all pages, except Symbols page. Added fix for when the master for an instance is missing.
 * **2.2** - Added appcast plugin support for Sketch 45 and later. Added new function to rename all instances on current page. New shortcuts.
 
 # Contact
