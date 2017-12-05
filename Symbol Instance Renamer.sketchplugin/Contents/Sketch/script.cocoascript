@@ -1,6 +1,7 @@
 var strPluginName = "Symbol Instance Renamer",
 	strRenameSuccess = " symbol instances have been renamed",
 	strRenameFailure = "Select at least one symbol instance to rename.";
+	strRenameSymbolFailure = "Select at least one symbol master for which to rename instances.";
 
 var renamePages = function(context) {
 	var pages = context.document.pages(),
@@ -51,6 +52,30 @@ var renameSelected = function(context) {
 		context.document.showMessage(count + strRenameSuccess);
 	} else {
 		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailure,strPluginName);
+	}
+}
+
+var renameSelectedSymbol = function(context) {
+	var predicate = NSPredicate.predicateWithFormat("className == %@","MSSymbolMaster"),
+		symbols = context.selection.filteredArrayUsingPredicate(predicate),
+		symbolLoop = symbols.objectEnumerator(),
+		symbol,
+		count = 0;
+
+	if (symbols.count() > 0) {
+		while (symbol = symbolLoop.nextObject()) {
+			var instances = symbol.allInstances(),
+				loop = instances.objectEnumerator(),
+				instance;
+
+			while (instance = loop.nextObject()) {
+				if (renameInstance(instance)) count++;
+			}
+		}
+
+		context.document.showMessage(count + strRenameSuccess);
+	} else {
+		NSApplication.sharedApplication().displayDialog_withTitle(strRenameSymbolFailure,strPluginName);
 	}
 }
 

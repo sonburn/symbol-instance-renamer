@@ -29,6 +29,15 @@
 			"handler" : "renamePage"
 		},
 		{
+			"name" : "Rename All Instances of Selected Symbol(s)",
+			"shortcut" : "cmd option shift m",
+			"identifier" : "renameSelectedSymbol",
+			"description" : "Rename all instances of the selected symbols to the name of their master.",
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renameSelectedSymbol"
+		},
+		{
 			"name" : "Rename Selected Instance(s)",
 			"shortcut" : "cmd option shift s",
 			"identifier" : "renameSelected",
@@ -44,11 +53,12 @@
 			"renamePages",
 			"renamePagesExceptSymbols",
 			"renamePage",
+			"renameSelectedSymbol",
 			"renameSelected"
 		]
 	},
 	"identifier" : "com.sonburn.sketchplugins.symbol-instance-renamer",
-	"version" : "2.3",
+	"version" : "2.4",
 	"description" : "Rename symbol instances to the name of their master.",
 	"authorEmail" : "jason.burns@synchronoss.com",
 	"name" : "Symbol Instance Renamer",

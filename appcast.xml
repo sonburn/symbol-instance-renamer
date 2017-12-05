@@ -6,15 +6,15 @@
 		<description>Rename all symbol instances to the name of their master.</description>
 		<language>en</language>
 		<item>
-			<title>Version 2.3</title>
+			<title>Version 2.4</title>
 			<description>
 				<![CDATA[
 				<ul>
-				<li>Added new function to rename all instances on all pages, except Symbols page. Added fix for when the master for an instance is missing.</li>
+				<li>Added new function to rename all instances of selected symbol(s).</li>
 				</ul>
 				]]>
 			</description>
-			<enclosure url="https://github.com/sonburn/symbol-instance-renamer/archive/master.zip" sparkle:version="2.3" />
+			<enclosure url="https://github.com/sonburn/symbol-instance-renamer/archive/master.zip" sparkle:version="2.4" />
 		</item>
 	</channel>
 </rss>
