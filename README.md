@@ -41,6 +41,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.4.1** - Now all instances of symbol(s) are renamed to last to portion after last '/'.
 * **2.4** - Added new function to rename all instances of selected symbol(s).
 * **2.3** - Added new function to rename all instances on all pages, except Symbols page. Added fix for when the master for an instance is missing.
 * **2.2** - Added appcast plugin support for Sketch 45 and later. Added new function to rename all instances on current page. New shortcuts.

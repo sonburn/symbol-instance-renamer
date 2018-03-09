@@ -11,6 +11,15 @@
 			"handler" : "renamePages"
 		},
 		{
+			"name" : "Rename All Instances of Selected Symbol(s) to Portion After Last '/'",
+			"shortcut" : "cmd option shift k",
+			"identifier" : "renamePages",
+			"description" : "Rename All Instances of Selected Symbol(s) to Portion After Last '/'",
+			"script" : "script.cocoascript",
+			"icon" : "icon-sr.png",
+			"handler" : "renameLastSlashPages"
+		},
+		{
 			"name" : "Rename All Instances on All Pages (Except Symbols Page)",
 			"shortcut" : "cmd option shift x",
 			"identifier" : "renamePagesExceptSymbols",
@@ -58,8 +67,8 @@
 		]
 	},
 	"identifier" : "com.sonburn.sketchplugins.symbol-instance-renamer",
-	"version" : "2.4",
-	"description" : "Rename symbol instances to the name of their master.",
+	"version" : "2.4.1",
+	"description" : "Rename symbol instances to the name of their master (Last portion after "/").",
 	"authorEmail" : "jason.burns@synchronoss.com",
 	"name" : "Symbol Instance Renamer",
 	"appcast" : "https://raw.githubusercontent.com/sonburn/symbol-instance-renamer/master/appcast.xml"

@@ -6,11 +6,11 @@
 		<description>Rename all symbol instances to the name of their master.</description>
 		<language>en</language>
 		<item>
-			<title>Version 2.4</title>
+			<title>Version 2.4.1</title>
 			<description>
 				<![CDATA[
 				<ul>
-				<li>Added new function to rename all instances of selected symbol(s).</li>
+				<li>Added new function to rename all instances of selected symbol(s) to portion after last '/'.</li>
 				</ul>
 				]]>
 			</description>
