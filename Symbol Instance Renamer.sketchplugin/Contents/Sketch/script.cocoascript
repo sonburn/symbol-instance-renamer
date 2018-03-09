@@ -16,6 +16,19 @@ var renamePages = function(context) {
 	context.document.showMessage(count + strRenameSuccess);
 }
 
+var renameLastSlashPages = function(context) {
+	var pages = context.document.pages(),
+		loop = pages.objectEnumerator(),
+		page,
+		count = 0;
+
+	while (page = loop.nextObject()) {
+		count = count + renameInstancesOnPage(page);
+	}
+
+	context.document.showMessage(count + strRenameSuccess);
+}
+
 var renamePagesExceptSymbols = function(context) {
 	var pages = context.document.pages(),
 		loop = pages.objectEnumerator(),
@@ -94,8 +107,11 @@ function renameInstancesOnPage(page) {
 }
 
 function renameInstance(instance) {
-	if (instance.name() != instance.symbolMaster().name().trim()) {
-		instance.setName(instance.symbolMaster().name());
+	var str = instance.symbolMaster().name().trim();
+	var str_array = str.split("/");
+	var simple_name = str_array[str_array.length - 1];
+	if (instance.name() != simple_name.trim()) {
+		instance.setName(simple_name);
 		return true;
 	} else return false;
 }
