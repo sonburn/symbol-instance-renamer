@@ -21,6 +21,7 @@ Rename symbol instances to the name of their master.
 * cmd option shift d - Rename all symbol instances on all pages to the name of their master
 * cmd option shift x - Rename all symbol instances on all pages, except the Symbols page, to the name of their master
 * cmd option shift p - Rename all symbol instances on current page to the name of their master
+* cmd option shift a - Rename all symbol instances in selected artboards to the name of their master
 * cmd option shift m - Rename all instances of the selected symbols to the name of their master
 * cmd option shift s - Rename selected symbol instances to the name of their master
 
@@ -41,6 +42,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.5** - Added new function to rename all instances within selected artboard(s).
 * **2.4** - Added new function to rename all instances of selected symbol(s).
 * **2.3** - Added new function to rename all instances on all pages, except Symbols page. Added fix for when the master for an instance is missing.
 * **2.2** - Added appcast plugin support for Sketch 45 and later. Added new function to rename all instances on current page. New shortcuts.
@@ -55,4 +57,4 @@ If you find this plugin helpful, consider shouting me ☕️ via <a href="https:
 
 # License
 
-Copyright (c) 2017 Jason Burns (Sonburn). See LICENSE.md for further details.
+Copyright (c) 2018 Jason Burns (Sonburn). See LICENSE.md for further details.

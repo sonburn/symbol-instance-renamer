@@ -1,7 +1,24 @@
 var strPluginName = "Symbol Instance Renamer",
 	strRenameSuccess = " symbol instances have been renamed",
-	strRenameFailure = "Select at least one symbol instance to rename.";
-	strRenameSymbolFailure = "Select at least one symbol master for which to rename instances.";
+	strRenameFailure = "Select at least one symbol instance to rename.",
+	strRenameFailureArtboard = "Select at least one artboard for which to rename instances.",
+	strRenameFailureSymbol = "Select at least one symbol master for which to rename instances.",
+	debugMode = false;
+
+var renameEverything = function(context) {
+	var pages = context.document.pages(),
+		loop = pages.objectEnumerator(),
+		page,
+		count = 0;
+
+	while (page = loop.nextObject()) {
+		count = count + renameObjectInstances(page);
+	}
+
+	context.document.showMessage(count + strRenameSuccess);
+
+	if (!debugMode) googleAnalytics(context,"rename","everything");
+}
 
 var renamePages = function(context) {
 	var pages = context.document.pages(),
@@ -10,31 +27,42 @@ var renamePages = function(context) {
 		count = 0;
 
 	while (page = loop.nextObject()) {
-		count = count + renameInstancesOnPage(page);
-	}
-
-	context.document.showMessage(count + strRenameSuccess);
-}
-
-var renamePagesExceptSymbols = function(context) {
-	var pages = context.document.pages(),
-		loop = pages.objectEnumerator(),
-		page,
-		count = 0;
-
-	while (page = loop.nextObject()) {
 		if (page != context.document.documentData().symbolsPage()) {
-			count = count + renameInstancesOnPage(page);
+			count = count + renameObjectInstances(page);
 		}
 	}
 
 	context.document.showMessage(count + strRenameSuccess);
+
+	if (!debugMode) googleAnalytics(context,"rename","pages");
 }
 
 var renamePage = function(context) {
-	var count = renameInstancesOnPage(context.document.currentPage());
+	var count = renameObjectInstances(context.document.currentPage());
 
 	context.document.showMessage(count + strRenameSuccess);
+
+	if (!debugMode) googleAnalytics(context,"rename","page");
+}
+
+var renameArtboard = function(context) {
+	var predicate = NSPredicate.predicateWithFormat("className == %@","MSArtboardGroup"),
+		artboards = context.selection.filteredArrayUsingPredicate(predicate),
+		loop = artboards.objectEnumerator(),
+		artboard,
+		count = 0;
+
+	if (artboards.count() > 0) {
+		while (artboard = loop.nextObject()) {
+			count = count + renameObjectInstances(artboard);
+		}
+
+		context.document.showMessage(count + strRenameSuccess);
+
+		if (!debugMode) googleAnalytics(context,"rename","artboard");
+	} else {
+		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailureArtboard,strPluginName);
+	}
 }
 
 var renameSelected = function(context) {
@@ -50,6 +78,8 @@ var renameSelected = function(context) {
 		}
 
 		context.document.showMessage(count + strRenameSuccess);
+
+		if (!debugMode) googleAnalytics(context,"rename","instance");
 	} else {
 		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailure,strPluginName);
 	}
@@ -74,14 +104,28 @@ var renameSelectedSymbol = function(context) {
 		}
 
 		context.document.showMessage(count + strRenameSuccess);
+
+		if (!debugMode) googleAnalytics(context,"rename","symbol");
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle(strRenameSymbolFailure,strPluginName);
+		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailureSymbol,strPluginName);
 	}
 }
 
-function renameInstancesOnPage(page) {
+var report = function(context) {
+	openUrl("https://github.com/sonburn/symbol-instance-renamer/issues/new");
+
+	if (!debugMode) googleAnalytics(context,"report","report");
+}
+
+var donate = function(context) {
+	openUrl("https://www.paypal.me/sonburn");
+
+	if (!debugMode) googleAnalytics(context,"donate","donate");
+}
+
+function renameObjectInstances(object) {
 	var predicate = NSPredicate.predicateWithFormat("className == %@","MSSymbolInstance"),
-		instances = page.children().filteredArrayUsingPredicate(predicate),
+		instances = object.children().filteredArrayUsingPredicate(predicate),
 		loop = instances.objectEnumerator(),
 		instance,
 		count = 0;
@@ -98,4 +142,52 @@ function renameInstance(instance) {
 		instance.setName(instance.symbolMaster().name());
 		return true;
 	} else return false;
+}
+
+function googleAnalytics(context,category,action,label,value) {
+	var trackingID = "UA-118918252-1",
+		uuidKey = "google.analytics.uuid",
+		uuid = NSUserDefaults.standardUserDefaults().objectForKey(uuidKey);
+
+	if (!uuid) {
+		uuid = NSUUID.UUID().UUIDString();
+		NSUserDefaults.standardUserDefaults().setObject_forKey(uuid,uuidKey);
+	}
+
+	var url = "https://www.google-analytics.com/collect?v=1";
+	// Tracking ID
+	url += "&tid=" + trackingID;
+	// Source
+	url += "&ds=sketch" + MSApplicationMetadata.metadata().appVersion;
+	// Client ID
+	url += "&cid=" + uuid;
+	// pageview, screenview, event, transaction, item, social, exception, timing
+	url += "&t=event";
+	// App Name
+	url += "&an=" + encodeURI(context.plugin.name());
+	// App ID
+	url += "&aid=" + context.plugin.identifier();
+	// App Version
+	url += "&av=" + context.plugin.version();
+	// Event category
+	url += "&ec=" + encodeURI(category);
+	// Event action
+	url += "&ea=" + encodeURI(action);
+	// Event label
+	if (label) {
+		url += "&el=" + encodeURI(label);
+	}
+	// Event value
+	if (value) {
+		url += "&ev=" + encodeURI(value);
+	}
+
+	var session = NSURLSession.sharedSession(),
+		task = session.dataTaskWithURL(NSURL.URLWithString(NSString.stringWithString(url)));
+
+	task.resume();
+}
+
+function openUrl(url) {
+	NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
 }
