@@ -1,3 +1,5 @@
+var sketch = require("sketch");
+
 var strPluginName = "Symbol Instance Renamer",
 	strRenameSuccess = " symbol instances have been renamed",
 	strRenameFailure = "Select at least one symbol instance to rename.",
@@ -16,7 +18,7 @@ var renameEverything = function(context) {
 		count = count + renameObjectInstances(page);
 	}
 
-	context.document.showMessage(count + strRenameSuccess);
+	sketch.UI.message(count + strRenameSuccess);
 
 	if (!debugMode) googleAnalytics(context,"rename","everything");
 }
@@ -33,7 +35,7 @@ var renamePages = function(context) {
 		}
 	}
 
-	context.document.showMessage(count + strRenameSuccess);
+	sketch.UI.message(count + strRenameSuccess);
 
 	if (!debugMode) googleAnalytics(context,"rename","pages");
 }
@@ -41,7 +43,7 @@ var renamePages = function(context) {
 var renamePage = function(context) {
 	var count = renameObjectInstances(context.document.currentPage());
 
-	context.document.showMessage(count + strRenameSuccess);
+	sketch.UI.message(count + strRenameSuccess);
 
 	if (!debugMode) googleAnalytics(context,"rename","page");
 }
@@ -58,11 +60,11 @@ var renameArtboard = function(context) {
 			count = count + renameObjectInstances(artboard);
 		}
 
-		context.document.showMessage(count + strRenameSuccess);
+		sketch.UI.message(count + strRenameSuccess);
 
 		if (!debugMode) googleAnalytics(context,"rename","artboard");
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailureArtboard,strPluginName);
+		sketch.UI.alert(strPluginName,strRenameFailureArtboard);
 	}
 }
 
@@ -84,11 +86,11 @@ var renameSymbol = function(context) {
 			}
 		}
 
-		context.document.showMessage(count + strRenameSuccess);
+		sketch.UI.message(count + strRenameSuccess);
 
 		if (!debugMode) googleAnalytics(context,"rename","symbol");
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailureSymbol,strPluginName);
+		sketch.UI.alert(strPluginName,strRenameFailureSymbol);
 	}
 }
 
@@ -104,11 +106,11 @@ var renameSelected = function(context) {
 			if (renameInstance(instance)) count++;
 		}
 
-		context.document.showMessage(count + strRenameSuccess);
+		sketch.UI.message(count + strRenameSuccess);
 
 		if (!debugMode) googleAnalytics(context,"rename","instance");
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailure,strPluginName);
+		sketch.UI.alert(strPluginName,strRenameFailure);
 	}
 }
 
@@ -166,7 +168,7 @@ var renameSelectedOptions = function(context) {
 
 		if (alertResponse == 1000) {
 			if (renameSource.selectedCell().tag() == 1 && renameTo.stringValue() == "") {
-				NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailureString,strPluginName);
+				sketch.UI.alert(strPluginName,strRenameFailureString);
 			} else {
 				var name = (renameTo.stringValue() != "") ? renameTo.stringValue() : false,
 					count = 0;
@@ -208,13 +210,13 @@ var renameSelectedOptions = function(context) {
 					}
 				}
 
-				context.document.showMessage(count + strRenameSuccess);
+				sketch.UI.message(count + strRenameSuccess);
 
 				if (!debugMode) googleAnalytics(context,"rename","instanceOptions");
 			}
 		} else return false;
 	} else {
-		NSApplication.sharedApplication().displayDialog_withTitle(strRenameFailure,strPluginName);
+		sketch.UI.alert(strPluginName,strRenameFailure);
 	}
 }
 
@@ -222,6 +224,12 @@ var report = function(context) {
 	openUrl("https://github.com/sonburn/symbol-instance-renamer/issues/new");
 
 	if (!debugMode) googleAnalytics(context,"report","report");
+}
+
+var plugins = function(context) {
+	openUrl("https://sonburn.github.io/");
+
+	if (!debugMode) googleAnalytics(context,"plugins","plugins");
 }
 
 var donate = function(context) {

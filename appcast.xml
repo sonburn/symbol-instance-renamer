@@ -6,15 +6,15 @@
 		<description>Rename all symbol instances to the name of their master.</description>
 		<language>en</language>
 		<item>
-			<title>Version 2.6</title>
+			<title>Version 2.7</title>
 			<description>
 				<![CDATA[
 				<ul>
-				<li>Added new function to rename selected instances with additional options, and added plugin icon to manifest for Sketch 50.</li>
+				<li>Update for Sketch 53.</li>
 				</ul>
 				]]>
 			</description>
-			<enclosure url="https://github.com/sonburn/symbol-instance-renamer/archive/master.zip" sparkle:version="2.6" />
+			<enclosure url="https://github.com/sonburn/symbol-instance-renamer/archive/master.zip" sparkle:version="2.7" />
 		</item>
 	</channel>
 </rss>

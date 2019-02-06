@@ -42,6 +42,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.7** - Update for Sketch 53.
 * **2.6** - Added new function to rename selected instances with additional options, and added plugin icon to manifest for Sketch 50.
 * **2.5** - Added new function to rename all instances within selected artboard(s).
 * **2.4** - Added new function to rename all instances of selected symbol(s).
@@ -58,4 +59,4 @@ If you find this plugin helpful, or would like to support my plugins in general,
 
 # License
 
-Copyright (c) 2018 Jason Burns (Sonburn). See LICENSE.md for further details.
+Copyright (c) 2019 Jason Burns (Sonburn). See LICENSE.md for further details.
