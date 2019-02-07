@@ -196,7 +196,7 @@ var renameSelectedOptions = function(context) {
 							if (renameInstance(instance,name)) count++;
 						}
 
-						if (renameMaster.state() == 1) {
+						if (renameSource.selectedCell().tag() == 1 && renameMaster.state() == 1) {
 							master.setName(name);
 						}
 					}
@@ -204,7 +204,7 @@ var renameSelectedOptions = function(context) {
 					while (selection = selectionLoop.nextObject()) {
 						if (renameInstance(selection,name)) count++;
 
-						if (renameMaster.state() == 1) {
+						if (renameSource.selectedCell().tag() == 1 && renameMaster.state() == 1) {
 							selection.symbolMaster().setName(name);
 						}
 					}
@@ -362,13 +362,17 @@ function openUrl(url) {
 }
 
 function renameInstance(instance,name) {
-	if (name) {
-		instance.setName(name);
-		return true;
-	} else if (instance.name() != instance.symbolMaster().name().trim()) {
-		instance.setName(instance.symbolMaster().name());
-		return true;
-	} else return false;
+	if (instance.symbolMaster()) {
+		if (name) {
+			instance.setName(name);
+			return true;
+		} else if (instance.name() != instance.symbolMaster().name().trim()) {
+			instance.setName(instance.symbolMaster().name());
+			return true;
+		} else return false;
+	} else {
+		log(instance.name() + ' might have a missing symbol master');
+	}
 }
 
 function renameObjectInstances(object) {

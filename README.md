@@ -42,6 +42,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.8** - Fixed 'Rename Selected Instance(s) with Options', and added handling for when a symbol instance's master is missing.
 * **2.7** - Update for Sketch 53.
 * **2.6** - Added new function to rename selected instances with additional options, and added plugin icon to manifest for Sketch 50.
 * **2.5** - Added new function to rename all instances within selected artboard(s).
