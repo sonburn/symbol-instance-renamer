@@ -12,6 +12,7 @@
 			"name" : "Rename All Instances on All Pages",
 			"shortcut" : "cmd option shift d",
 			"identifier" : "renameEverything",
+			"icon": "icon.png",
 			"description" : "Rename all symbol instances on all pages to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renameEverything"
@@ -20,6 +21,7 @@
 			"name" : "Rename All Instances on All Pages (Except Symbols Page)",
 			"shortcut" : "cmd option shift x",
 			"identifier" : "renamePages",
+			"icon": "icon.png",
 			"description" : "Rename all symbol instances on all pages, except the Symbols page, to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renamePages"
@@ -28,6 +30,7 @@
 			"name" : "Rename All Instances on Current Page",
 			"shortcut" : "cmd option shift p",
 			"identifier" : "renamePage",
+			"icon": "icon.png",
 			"description" : "Rename all symbol instances on current page to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renamePage"
@@ -36,6 +39,7 @@
 			"name" : "Rename All Instances in Selected Artboard(s)",
 			"shortcut" : "cmd option shift a",
 			"identifier" : "renameArtboard",
+			"icon": "icon.png",
 			"description" : "Rename all symbol instances in selected artboards to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renameArtboard"
@@ -44,6 +48,7 @@
 			"name" : "Rename All Instances of Selected Symbol(s)",
 			"shortcut" : "cmd option shift m",
 			"identifier" : "renameSymbol",
+			"icon": "icon.png",
 			"description" : "Rename all instances of the selected symbols to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renameSymbol"
@@ -52,6 +57,7 @@
 			"name" : "Rename Selected Instance(s)",
 			"shortcut" : "cmd option shift s",
 			"identifier" : "renameSelected",
+			"icon": "icon.png",
 			"description" : "Rename selected symbol instances to the name of their master.",
 			"script" : "script.js",
 			"handler" : "renameSelected"
@@ -59,6 +65,7 @@
 		{
 			"name" : "Rename Selected Instance(s) with Options…",
 			"identifier" : "renameSelectedOptions",
+			"icon": "icon.png",
 			"description" : "Rename instances with additional options.",
 			"script" : "script.js",
 			"handler" : "renameSelectedOptions"
@@ -66,18 +73,21 @@
 		{
 			"name": "Report Issue",
 			"identifier": "report",
+			"icon": "icon.png",
 			"script" : "script.js",
 			"handler": "report"
 		},
 		{
 			"name": "Other Plugins",
 			"identifier": "plugins",
+			"icon": "icon.png",
 			"script" : "script.js",
 			"handler": "plugins"
 		},
 		{
 			"name": "Donate",
 			"identifier": "donate",
+			"icon": "icon.png",
 			"script" : "script.js",
 			"handler": "donate"
 		}
