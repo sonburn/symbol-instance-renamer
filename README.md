@@ -8,10 +8,6 @@ Rename symbol instances to the name of their master.
 	<img width="160" height="41" src="http://bit.ly/RunnerBadgeBlue" alt="runner-badge-blue">
 </a>
 
-<a href="https://sketchpacks.com/sonburn/symbol-instance-renamer/install">
-	<img width="160" height="41" src="http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" >
-</a>
-
 <a href="https://www.paypal.me/sonburn">
 	<img width="160" height="41" src="https://raw.githubusercontent.com/sonburn/symbol-organizer/master/images/donate.png">
 </a>
@@ -26,7 +22,7 @@ Rename symbol instances to the name of their master.
 * cmd option shift s - Rename selected symbol instances to the name of their master
 
 ## Automatic
-Search for Symbol Instance Renamer in [Sketchrunner](http://sketchrunner.com/), [Sketchpacks](https://sketchpacks.com/), or [Sketch Toolbox](http://sketchtoolbox.com/) if you have one of those installed.
+Search for Symbol Instance Renamer in [Sketchrunner](http://sketchrunner.com/) or [Sketch Toolbox](http://sketchtoolbox.com/) if you have one of those installed.
 
 Once installed, Sketch will automatically notify you when an update is available (version 2.2 and later).
 
