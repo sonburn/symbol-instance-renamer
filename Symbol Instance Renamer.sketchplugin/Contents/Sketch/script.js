@@ -1,4 +1,4 @@
-var sketch = require("sketch");
+const sketch = require("sketch");
 
 var strPluginName = "Symbol Instance Renamer",
 	strRenameSuccess = " symbol instances have been renamed",
@@ -327,7 +327,7 @@ function googleAnalytics(context,category,action,label,value) {
 	// Tracking ID
 	url += "&tid=" + trackingID;
 	// Source
-	url += "&ds=sketch" + MSApplicationMetadata.metadata().appVersion;
+	url += "&ds=sketch" + sketch.version.sketch;
 	// Client ID
 	url += "&cid=" + uuid;
 	// pageview, screenview, event, transaction, item, social, exception, timing

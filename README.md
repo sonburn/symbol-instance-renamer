@@ -42,6 +42,7 @@ To find your plugins directory...
 
 # Changelog
 
+* **2.9** - Fix for Sketch 72.
 * **2.8** - Fixed 'Rename Selected Instance(s) with Options', and added handling for when a symbol instance's master is missing.
 * **2.7** - Update for Sketch 53.
 * **2.6** - Added new function to rename selected instances with additional options, and added plugin icon to manifest for Sketch 50.
@@ -60,4 +61,4 @@ If you find this plugin helpful, or would like to support my plugins in general,
 
 # License
 
-Copyright (c) 2019 Jason Burns (Sonburn). See LICENSE.md for further details.
+Copyright (c) 2021 Jason Burns (Sonburn). See LICENSE.md for further details.
