@@ -3,7 +3,7 @@
 	"description" : "Rename symbol instances to the name of their master.",
 	"author" : "Jason Burns",
 	"homepage" : "https://github.com/sonburn/symbol-instance-renamer",
-	"version" : "2.8",
+	"version" : "2.9",
 	"identifier" : "com.sonburn.sketchplugins.symbol-instance-renamer",
 	"appcast" : "https://raw.githubusercontent.com/sonburn/symbol-instance-renamer/master/appcast.xml",
 	"icon" : "icon.png",
